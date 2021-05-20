@@ -1,0 +1,115 @@
+"Source coding" redirects here. For the term in computer programming, see Source code.
+In signal processing, data compression, source coding,[1] or bit-rate reduction is the process of encoding information using fewer bits than the original representation.[2] Any particular compression is either lossy or lossless. Lossless compression reduces bits by identifying and eliminating statistical redundancy. No information is lost in lossless compression. Lossy compression reduces bits by removing unnecessary or less important information.[3] Typically, a device that performs data compression is referred to as an encoder, and one that performs the reversal of the process (decompression) as a decoder.
+
+The process of reducing the size of a data file is often referred to as data compression. In the context of data transmission, it is called source coding; encoding done at the source of the data before it is stored or transmitted.[4] Source coding should not be confused with channel coding, for error detection and correction or line coding, the means for mapping data onto a signal.
+
+Compression is useful because it reduces the resources required to store and transmit data. Computational resources are consumed in the compression and decompression processes. Data compression is subject to a space–time complexity trade-off. For instance, a compression scheme for video may require expensive hardware for the video to be decompressed fast enough to be viewed as it is being decompressed, and the option to decompress the video in full before watching it may be inconvenient or require additional storage. The design of data compression schemes involves trade-offs among various factors, including the degree of compression, the amount of distortion introduced (when using lossy data compression), and the computational resources required to compress and decompress the data[5]
+
+
+Contents
+1	Lossless
+2	Lossy
+3	Theory
+3.1	Machine learning
+3.2	Data differencing
+4	Uses
+4.1	Image
+4.2	Audio
+4.2.1	Lossy audio compression
+4.2.1.1	Coding methods
+4.2.1.2	Speech encoding
+4.2.2	History
+4.3	Video
+4.3.1	Encoding theory
+4.3.1.1	Inter-frame coding
+4.3.2	Hybrid block-based transform formats
+4.3.3	History
+4.4	Genetics
+5	Outlook and currently unused potential
+6	See also
+7	References
+8	External links
+Lossless
+Main article: Lossless compression
+Lossless data compression algorithms usually exploit statistical redundancy to represent data without losing any information, so that the process is reversible. Lossless compression is possible because most real-world data exhibits statistical redundancy. For example, an image may have areas of color that do not change over several pixels; instead of coding "red pixel, red pixel, ..." the data may be encoded as "279 red pixels". This is a basic example of run-length encoding; there are many schemes to reduce file size by eliminating redundancy.
+
+The Lempel–Ziv (LZ) compression methods are among the most popular algorithms for lossless storage.[6] DEFLATE is a variation on LZ optimized for decompression speed and compression ratio, but compression can be slow. In the mid-1980s, following work by Terry Welch, the Lempel–Ziv–Welch (LZW) algorithm rapidly became the method of choice for most general-purpose compression systems. LZW is used in GIF images, programs such as PKZIP, and hardware devices such as modems.[7] LZ methods use a table-based compression model where table entries are substituted for repeated strings of data. For most LZ methods, this table is generated dynamically from earlier data in the input. The table itself is often Huffman encoded. Grammar-based codes like this can compress highly repetitive input extremely effectively, for instance, a biological data collection of the same or closely related species, a huge versioned document collection, internet archival, etc. The basic task of grammar-based codes is constructing a context-free grammar deriving a single string. Other practical grammar compression algorithms include Sequitur and Re-Pair.
+
+The strongest modern lossless compressors use probabilistic models, such as prediction by partial matching. The Burrows–Wheeler transform can also be viewed as an indirect form of statistical modelling.[8] In a further refinement of the direct use of probabilistic modelling, statistical estimates can be coupled to an algorithm called arithmetic coding. Arithmetic coding is a more modern coding technique that uses the mathematical calculations of a finite-state machine to produce a string of encoded bits from a series of input data symbols. It can achieve superior compression compared to other techniques such as the better-known Huffman algorithm. It uses an internal memory state to avoid the need to perform a one-to-one mapping of individual input symbols to distinct representations that use an integer number of bits, and it clears out the internal memory only after encoding the entire string of data symbols. Arithmetic coding applies especially well to adaptive data compression tasks where the statistics vary and are context-dependent, as it can be easily coupled with an adaptive model of the probability distribution of the input data. An early example of the use of arithmetic coding was in an optional (but not widely used) feature of the JPEG image coding standard.[9] It has since been applied in various other designs including H.263, H.264/MPEG-4 AVC and HEVC for video coding.[10]
+
+Lossy
+Main article: Lossy compression
+In the late 1980s, digital images became more common, and standards for lossless image compression emerged. In the early 1990s, lossy compression methods began to be widely used.[11] In these schemes, some loss of information is accepted as dropping nonessential detail can save storage space. There is a corresponding trade-off between preserving information and reducing size. Lossy data compression schemes are designed by research on how people perceive the data in question. For example, the human eye is more sensitive to subtle variations in luminance than it is to the variations in color. JPEG image compression works in part by rounding off nonessential bits of information.[12] A number of popular compression formats exploit these perceptual differences, including psychoacoustics for sound, and psychovisuals for images and video.
+
+Most forms of lossy compression are based on transform coding, especially the discrete cosine transform (DCT). It was first proposed in 1972 by Nasir Ahmed, who then developed a working algorithm with T. Natarajan and K. R. Rao in 1973, before introducing it in January 1974.[13][14] DCT is the most widely used lossy compression method, and is used in multimedia formats for images (such as JPEG and HEIF),[15] video (such as MPEG, AVC and HEVC) and audio (such as MP3, AAC and Vorbis).
+
+Lossy image compression is used in digital cameras, to increase storage capacities. Similarly, DVDs, Blu-ray and streaming video use lossy video coding formats. Lossy compression is extensively used in video.
+
+In lossy audio compression, methods of psychoacoustics are used to remove non-audible (or less audible) components of the audio signal. Compression of human speech is often performed with even more specialized techniques; speech coding is distinguished as a separate discipline from general-purpose audio compression. Speech coding is used in internet telephony, for example, audio compression is used for CD ripping and is decoded by the audio players.[8]
+
+Lossy compression can cause generation loss.
+
+Theory
+The theoretical basis for compression is provided by information theory and, more specifically, algorithmic information theory for lossless compression and rate–distortion theory for lossy compression. These areas of study were essentially created by Claude Shannon, who published fundamental papers on the topic in the late 1940s and early 1950s. Other topics associated with compression include coding theory and statistical inference.[16]
+
+Machine learning
+There is a close connection between machine learning and compression. A system that predicts the posterior probabilities of a sequence given its entire history can be used for optimal data compression (by using arithmetic coding on the output distribution). An optimal compressor can be used for prediction (by finding the symbol that compresses best, given the previous history). This equivalence has been used as a justification for using data compression as a benchmark for "general intelligence".[17][18][19]
+
+An alternative view can show compression algorithms implicitly map strings into implicit feature space vectors, and compression-based similarity measures compute similarity within these feature spaces. For each compressor C(.) we define an associated vector space ℵ, such that C(.) maps an input string x, corresponds to the vector norm ||~x||. An exhaustive examination of the feature spaces underlying all compression algorithms is precluded by space; instead, feature vectors chooses to examine three representative lossless compression methods, LZW, LZ77, and PPM.[20]
+
+According to AIXI theory, a connection more directly explained in Hutter Prize, the best possible compression of x is the smallest possible software which generates x. For example, in that model, a zip file's compressed size includes both the zip file and the unzipping software, since you can't unzip it without both, but there may be an even smaller combined form.
+
+Data differencing
+Main article: Data differencing
+Data compression can be viewed as a special case of data differencing.[21][22] Data differencing consists of producing a difference given a source and a target, with patching reproducing the target given a source and a difference. Since there is no separate source and target in data compression, one can consider data compression as data differencing with empty source data, the compressed file corresponding to a difference from nothing. This is the same as considering absolute entropy (corresponding to data compression) as a special case of relative entropy (corresponding to data differencing) with no initial data.
+
+The term differential compression is used to emphasize the data differencing connection.
+
+Uses
+Image
+Main article: Image compression
+Entropy coding originated in the 1940s with the introduction of Shannon–Fano coding,[23] the basis for Huffman coding which was developed in 1950.[24] Transform coding dates back to the late 1960s, with the introduction of fast Fourier transform (FFT) coding in 1968 and the Hadamard transform in 1969.[25]
+
+An important image compression technique is the discrete cosine transform (DCT), a technique developed in the early 1970s.[13] DCT is the basis for JPEG, a lossy compression format which was introduced by the Joint Photographic Experts Group (JPEG) in 1992.[26] JPEG greatly reduces the amount of data required to represent an image at the cost of a relatively small reduction in image quality and has become the most widely used image file format.[27][28] Its highly efficient DCT-based compression algorithm was largely responsible for the wide proliferation of digital images and digital photos.[29]
+
+Lempel–Ziv–Welch (LZW) is a lossless compression algorithm developed in 1984. It is used in the GIF format, introduced in 1987.[30] DEFLATE, a lossless compression algorithm specified in 1996, is used in the Portable Network Graphics (PNG) format.[31]
+
+Wavelet compression, the use of wavelets in image compression, began after the development of DCT coding.[32] The JPEG 2000 standard was introduced in 2000.[33] In contrast to the DCT algorithm used by the original JPEG format, JPEG 2000 instead uses discrete wavelet transform (DWT) algorithms.[34][35][36] JPEG 2000 technology, which includes the Motion JPEG 2000 extension, was selected as the video coding standard for digital cinema in 2004.[37]
+
+Audio
+See also: Audio coding format and Audio codec
+Audio data compression, not to be confused with dynamic range compression, has the potential to reduce the transmission bandwidth and storage requirements of audio data. Audio compression algorithms are implemented in software as audio codecs. In both lossy and lossless compression, information redundancy is reduced, using methods such as coding, quantization discrete cosine transform and linear prediction to reduce the amount of information used to represent the uncompressed data.
+
+Lossy audio compression algorithms provide higher compression and are used in numerous audio applications including Vorbis and MP3. These algorithms almost all rely on psychoacoustics to eliminate or reduce fidelity of less audible sounds, thereby reducing the space required to store or transmit them.[2][38]
+
+The acceptable trade-off between loss of audio quality and transmission or storage size depends upon the application. For example, one 640 MB compact disc (CD) holds approximately one hour of uncompressed high fidelity music, less than 2 hours of music compressed losslessly, or 7 hours of music compressed in the MP3 format at a medium bit rate. A digital sound recorder can typically store around 200 hours of clearly intelligible speech in 640 MB.[39]
+
+Lossless audio compression produces a representation of digital data that can be decoded to an exact digital duplicate of the original. Compression ratios are around 50–60% of the original size,[40] which is similar to those for generic lossless data compression. Lossless codecs use curve fitting or linear prediction as a basis for estimating the signal. Parameters describing the estimation and the difference between the estimation and the actual signal are coded separately.[41]
+
+A number of lossless audio compression formats exist. See list of lossless codecs for a listing. Some formats are associated with a distinct system, such as Direct Stream Transfer, used in Super Audio CD and Meridian Lossless Packing, used in DVD-Audio, Dolby TrueHD, Blu-ray and HD DVD.
+
+Some audio file formats feature a combination of a lossy format and a lossless correction; this allows stripping the correction to easily obtain a lossy file. Such formats include MPEG-4 SLS (Scalable to Lossless), WavPack, and OptimFROG DualStream.
+
+When audio files are to be processed, either by further compression or for editing, it is desirable to work from an unchanged original (uncompressed or losslessly compressed). Processing of a lossily compressed file for some purpose usually produces a final result inferior to the creation of the same compressed file from an uncompressed original. In addition to sound editing or mixing, lossless audio compression is often used for archival storage, or as master copies.
+
+Lossy audio compression
+
+Comparison of spectrograms of audio in an uncompressed format and several lossy formats. The lossy spectrograms show bandlimiting of higher frequencies, a common technique associated with lossy audio compression.
+Lossy audio compression is used in a wide range of applications. In addition to standalone audio-only applications of file playback in MP3 players or computers, digitally compressed audio streams are used in most video DVDs, digital television, streaming media on the Internet, satellite and cable radio, and increasingly in terrestrial radio broadcasts. Lossy compression typically achieves far greater compression than lossless compression, by discarding less-critical data based on psychoacoustic optimizations.[42]
+
+Psychoacoustics recognizes that not all data in an audio stream can be perceived by the human auditory system. Most lossy compression reduces redundancy by first identifying perceptually irrelevant sounds, that is, sounds that are very hard to hear. Typical examples include high frequencies or sounds that occur at the same time as louder sounds. Those irrelevant sounds are coded with decreased accuracy or not at all.
+
+Due to the nature of lossy algorithms, audio quality suffers a digital generation loss when a file is decompressed and recompressed. This makes lossy compression unsuitable for storing the intermediate results in professional audio engineering applications, such as sound editing and multitrack recording. However, lossy formats such as MP3 are very popular with end users as the file size is reduced to 5-20% of the original size and a megabyte can store about a minute's worth of music at adequate quality.
+
+Coding methods
+To determine what information in an audio signal is perceptually irrelevant, most lossy compression algorithms use transforms such as the modified discrete cosine transform (MDCT) to convert time domain sampled waveforms into a transform domain, typically the frequency domain. Once transformed, component frequencies can be prioritized according to how audible they are. Audibility of spectral components is assessed using the absolute threshold of hearing and the principles of simultaneous masking—the phenomenon wherein a signal is masked by another signal separated by frequency—and, in some cases, temporal masking—where a signal is masked by another signal separated by time. Equal-loudness contours may also be used to weight the perceptual importance of components. Models of the human ear-brain combination incorporating such effects are often called psychoacoustic models.[43]
+
+Other types of lossy compressors, such as the linear predictive coding (LPC) used with speech, are source-based coders. LPC uses a model of the human vocal tract to analyze speech sounds and infer the parameters used by the model to produce them moment to moment. These changing parameters are transmitted or stored and used to drive another model in the decoder which reproduces the sound.
+
+Lossy formats are often used for the distribution of streaming audio or interactive communication (such as in cell phone networks). In such applications, the data must be decompressed as the data flows, rather than after the entire data stream has been transmitted. Not all audio codecs can be used for streaming applications.[42]
+
+Latency is introduced by the methods used to encode and decode the data. Some codecs will analyze a longer segment, called a frame, of the data to optimize efficiency, and then code it in a manner that requires a larger segment of data at one time to decode. The inherent latency of the coding algorithm can be critical; for example, when there is a two-way transmission of data, such as with a telephone conversation, significant delays may seriously degrade the perceived quality.
+
+In contrast to the speed of compression, which is proportional to the number of operations required by the algorithm, here latency refers to the number of samples that must be analyzed before a block of audio is processed. In the minimum case, latency is zero samples (e.g., if the coder/decoder simply reduces the number of bits used to quantize the signal). Time domain algorithms such as LPC also often have low latencies, hence their popularity in speech coding for telephony. In algorithms such as MP3, however, a large number of samples have to be analyzed to implement a psychoacoustic model in the frequency domain, and latency is on the order of 23 ms.
+
+Speech encoding
